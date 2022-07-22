@@ -1,30 +1,30 @@
 
-
-> Chinese Readme: [中文版readme](README_CN.md).
+[简体中文](./README_CN.md) | **English**
 
 ## Introduction
 
-WBBlades is a tool set based on Mach-O file parsing, including unused code detection (supporting ObjC and Swift), app size analysis, and log recovery without dSYM file.
+WBBlades is a tool set based on `Mach-O` file parsing, including useless code detection (supports `OC` and `Swift`), package size analysis (supports a single static library/dynamic library), point-to-point crash analysis ( analyse system crash log, based on symbol file and without symbol files). It mainly uses __Text assembly code analysis, architecture extraction, DYSM file stripping, symbol table stripping, crash file (ips) analysis technology.
+
+Version 3.0 implements a comprehensive visual implementation of the toolset based on the original command-line-based operation of the above tools, and is designed for R&D efficiency improvement. In addition, in the analysis of difficult crashes, for some crashes that are not easy to reproduce and cannot be collected by general tools (the app process is directly killed by the operating system), a point-to-point crash analysis is provided.
 
 ## Installation
 
 ```
 $ git clone https://github.com/wuba/WBBlades.git
 $ cd WBBlades
-$ sudo make install
+$ pod install
 ```
 
-Build with SwiftPM
+### Usage of Visualization Tool
+Target selects "WBBladesCrashApp".
 
-```
-swift build -c release --arch arm64 --arch x86_64
-sudo cp .build/apple/Products/Release/blades /usr/local/bin
-```
+Click the button on the left function area, select a tool such as Useless Classes Detection,Application Size Analysis,etc., and operate according to the prompts in the tool, and the result will be output to the text box;
 
-**If you see some message like `[1] 70390 killed blades` ,please `make install`again.**
+### Usage for Mac Command Line
+Target selects "WBBlades"，Compile and build to generate command line tools
+Copy the generated product "blades" to /usr/local/bin，as follows：
+sudo cp ${Your_BUILD_DIR}/blades /usr/local/bin
 
-
-## Usage
 
 - Unused Code Detection ObjC & Swift
 
@@ -73,13 +73,6 @@ In the case of losing the dSYM file, try to restore the log via `blades -symbol`
 
 - This tool only supports ObjC, and its principle is to determine the function of the crash by analyzing the address of the ObjC method in Mach-O. Therefore, it is not suitable for Swfit, C, and C++. In addition, tools are not omnipotent, and are only used as emergency supplementary technical means. In daily situations, it is recommended to use symbol tables for log symbolization.
 
-## Developer for WBBlades
-
-邓竹立
-
-## Contributors for WBBlades
-
-邓竹立，彭飞，朴惠姝，曾庆隆，林雅明
 
 ## Contributing & Feedback
 
@@ -92,7 +85,14 @@ We sincerely hope that developers can provide valuable comments and suggestions,
 - [Open Source｜WBBlades：APP Analysis Tool Set Based on Mach-O File Analysis](https://mp.weixin.qq.com/s/HWJArO5y9G20jb2pqaAQWQ)
 - [The Storage Difference between Swift and ObjC from the Perspective of Mach-O](https://www.jianshu.com/p/ef0ff6ee6bc6)
 - [New Approach to Swift Hook - Virtual Method Table](https://mp.weixin.qq.com/s/mjwOVdPZUlEMgLUNdT6o9g)
+- [Important Updates - Designed to Improve Performance](https://mp.weixin.qq.com/s/tXxhnDKerobyxoWuEBGjNQ)
+- [Point to Point Analyze and Governance of Crashes](https://mp.weixin.qq.com/s/tGvE-2flzhm4skkrfbUIBA)
 
 ## Thanks
 
-GitHub: [https://github.com/aquynh/capstone](https://github.com/aquynh/capstone "GitHub for capstone") 
+GitHub: [https://github.com/aquynh/capstone](https://github.com/aquynh/capstone "GitHub for capstone")
+
+GitHub: [https://github.com/Sunnyyoung/SYFlatButton](https://github.com/Sunnyyoung/SYFlatButton "GitHub for SYFlatButton") 
+
+DWARF: [https://www.prevanders.net/dwarf.html#releases](https://www.prevanders.net/dwarf.html#releases "Source Code for DWARF") 
+  
