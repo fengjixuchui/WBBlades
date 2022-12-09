@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
   s.source              = { :git => "xxx@xxx.xxx.com:xxx/xxx.git" , :branch => "#{s.version}"}
   s.xcconfig = {
     'HEADER_SEARCH_PATHS' => "${PODS_ROOT}/Headers/Public/WBBlades",
+    'DEFINES_MODULE' => 'YES'
 }
   s.subspec 'Capstone' do |capstone|
     capstone.source_files       = 'Capstone/**/*.{h,m,mm,swift,c,cc,cpp}'
@@ -46,6 +47,10 @@ Pod::Spec.new do |s|
     tools.source_files       = 'Tools/**/*.{h,m,mm,swift,c,cc,cpp}'
     tools.private_header_files = "Tools/WBBladesTool.h"
     tools.requires_arc          = true
+   end
+  s.subspec 'ClassDump' do |classdump|
+    classdump.source_files       = 'ClassDump/**/*.{h,m,mm,swift,c,cc,cpp}'
+    classdump.requires_arc          = true
    end
 #  s.private_header_files = "WBBlades/WBBlades/Tools/WBBladesTool.h"
   s.dependency  'WBBladesCrash'

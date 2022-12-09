@@ -12,11 +12,15 @@ extern  NSString *resultFilePath(void);
 @interface WBBladesInterface : NSObject
 @property(nonatomic, strong, nullable)NSString *libarySizeInfos;
 @property(nonatomic, strong, nullable)NSString *unusedClassInfos;
+@property(nonatomic, strong, nullable)NSString *autoHookInfos;
+@property(nonatomic, assign)BOOL autoHookFinished;
 + (WBBladesInterface *)shareInstance;
 + (void)handleStaticLibrary:(NSString *)filePath;
 + (void)scanStaticLibraryByInputPath:(NSString *)inputPath;
 + (void)scanUnusedClassByInputPaths: (NSArray<NSString *>*)inputPath;
-+ (NSSet<NSString *> *)scanUnusedClassWithAppPath:(NSString *)appFilePath fromLibs:(NSArray<NSString *> *)fromLibsPath;
++ (void)autoHookByInputPaths:(NSString *)filePath;
++ (void)endAutoHookProcess;
++ (NSArray<NSDictionary<NSString *, NSNumber *> *> *)scanUnusedClassWithAppPath:(NSString *)appFilePath fromLibs:(NSArray<NSString *> *)fromLibsPath;
 + (NSString *)scanCrashSymbolByCrashLogPath:(NSString *)crashLogPath executableAppPath:(NSString *)appPath;
 + (NSString *)scanDependLibs:(NSString *)folderPath;
 @end

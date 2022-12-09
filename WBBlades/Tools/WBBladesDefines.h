@@ -39,6 +39,10 @@ struct method64_list_t
 {
   unsigned int entsize;
   unsigned int count;
+    
+//    bool usesRelativeOffsets() const {
+//        return (entsize & 0x80000000) != 0;
+//    }
 };
 
 struct method64_t
@@ -48,7 +52,20 @@ struct method64_t
   unsigned long long imp;
 };
 
+struct relative_method_t {
+    int32_t nameOffset;   // SEL*
+    int32_t typesOffset;  // const char *
+    int32_t impOffset;    // IMP
+};
+
+
 struct ivar64_list_t
+{
+  unsigned int entsize;
+  unsigned int count;
+};
+
+struct property_list_t
 {
   unsigned int entsize;
   unsigned int count;
@@ -62,6 +79,12 @@ struct ivar64_t
   unsigned int alignment;
   unsigned int size;
 };
+
+struct property_t {
+    unsigned long long name;
+    unsigned long long attributes;
+};
+
 struct category64
 {
     unsigned long long name;
@@ -275,21 +298,21 @@ struct SwiftBaseType {
  2、不带VTable的
  3、AddMetadataInitialization的
  */
-//struct SwiftClassType {
-//    uint32_t Flag;
-//    uint32_t Parent;
-//    int32_t  Name;
-//    int32_t  AccessFunction;
-//    int32_t  FieldDescriptor;
-//    int32_t  SuperclassType;
-//    uint32_t MetadataNegativeSizeInWords;
-//    uint32_t MetadataPositiveSizeInWords;
-//    uint32_t NumImmediateMembers;
-//    uint32_t NumFields;
-//    uint32_t FieldOffsetVectorOffset;
-//    uint32_t Offset;
-//    uint32_t NumMethods;
-//};
+struct SwiftClassType {
+    uint32_t Flag;
+    uint32_t Parent;
+    int32_t  Name;
+    int32_t  AccessFunction;
+    int32_t  FieldDescriptor;
+    int32_t  SuperclassType;
+    uint32_t MetadataNegativeSizeInWords;
+    uint32_t MetadataPositiveSizeInWords;
+    uint32_t NumImmediateMembers;
+    uint32_t NumFields;
+    uint32_t FieldOffsetVectorOffset;
+    uint32_t Offset;
+    uint32_t NumMethods;
+};
 
 struct SwiftClassTypeNoMethods {
     uint32_t Flag;
@@ -302,6 +325,7 @@ struct SwiftClassTypeNoMethods {
     uint32_t MetadataPositiveSizeInWords;
     uint32_t NumImmediateMembers;
     uint32_t NumFields;
+    uint32_t FieldOffsetVectorOffset;
 };
 
 //struct SwiftClassSinMetadataInit {
