@@ -454,6 +454,10 @@ static section_64 classList = {0};
 }
 
 + (NSArray *)scanSELCallerWithBegin:(unsigned long long)begin end:(unsigned long long)end {
+    if(0 == s_cs_insn_address_array.count) {
+        return nil;
+    }
+
     if (begin>=end) {
         return nil;
     }
@@ -671,7 +675,9 @@ static section_64 classList = {0};
 //            if (classMethodListOffset > 0 && classMethodListOffset < max) {
 //                allSize = allSize + [self statisticsMethodImp:classMethodListOffset vm:vm fileData:fileData];
 //            }
-            sizeDic[className] = @(allSize/1000.0);
+            if (className) {
+                sizeDic[className] = @(allSize/1000.0);
+            }
             
             //enumerate member variables
             unsigned long long varListOffset = [WBBladesTool getOffsetFromVmAddress:targetClassInfo.instanceVariables fileData:fileData];
@@ -1687,6 +1693,9 @@ symRanObj：WBBladesSymbolRange类型模型。
 
         SwiftKind kindType = [WBBladesTool getSwiftType:swiftType];
         if (kindType == SwiftKindClass) {
+            if (typeOffset > fileData.length) {
+                continue;
+            }
 //            // 先查看类名是否在未使用类中，如果在则进行统计
             NSString *className = [WBBladesTool getSwiftTypeNameWithSwiftType:swiftType Offset:typeOffset vm:linkBase fileData:fileData];
             if (![classList containsObject:className]) {

@@ -1,5 +1,5 @@
 
-[简体中文](README-zh.md)|[English](README.md)
+[简体中文](./README-CN.md) | **English**
 
 ## Introduction
 
@@ -29,7 +29,7 @@ Target selects "WBBladesCrashApp".
 
 Click the button on the left function area, select a tool such as Useless Classes Detection,Application Size Analysis,etc., and operate according to the prompts in the tool, and the result will be output to the text box;
 
-> Detailed introduction to visualization tool: [Detailed introduction to visualization tool](UsageDetail.md)
+> Detailed introduction to visualization tool: [Detailed introduction to visualization tool](https://juejin.cn/post/7176441132447399993)
 ### Usage for Mac Command Line
 Target selects "WBBlades"，Compile and build to generate command line tools
 Copy the generated product "blades" to /usr/local/bin，as follows：
@@ -89,7 +89,9 @@ In the case of losing the dSYM file, try to restore the log via `blades -symbol`
 We sincerely hope that developers can provide valuable comments and suggestions, and developers can provide feedback on suggestions and problems by submitting PR or Issue.
 
 ## Related Technical Articles
-
+- [58tongcheng Packet Size Management Tool Decryption](https://juejin.cn/post/7176441132447399993)
+- [Important Updates - Designed to Improve Performance](https://mp.weixin.qq.com/s/tXxhnDKerobyxoWuEBGjNQ)
+- [Point to Point Analyze and Governance of Crashes](https://mp.weixin.qq.com/s/tGvE-2flzhm4skkrfbUIBA)
 - [58tongcheng Size Analysis and Statistics for iOS Client Components](https://blog.csdn.net/csdnnews/article/details/100354658/)
 - [Unused Class Detection Based on Mach-O Disassembly](https://www.jianshu.com/p/c41ad330e81c)
 - [Open Source｜WBBlades：APP Analysis Tool Set Based on Mach-O File Analysis](https://mp.weixin.qq.com/s/HWJArO5y9G20jb2pqaAQWQ)
@@ -109,4 +111,5 @@ GitHub: [https://github.com/alexrozanski/PXListView](https://github.com/alexroza
 GitHub: [https://github.com/steventroughtonsmith/cartool](https://github.com/steventroughtonsmith/cartool "cartool")
 
 DWARF: [https://www.prevanders.net/dwarf.html#releases](https://www.prevanders.net/dwarf.html#releases "Source Code for DWARF") 
+
 
